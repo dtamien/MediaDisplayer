@@ -7,8 +7,13 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, 'dist')));
 
-app.listen(3000, () => {
-  console.log('File server is running on http://localhost:3000');
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, 'dist', 'index.html'));
+});
+
+const PORT = 29870;
+app.listen(PORT, () => {
+  console.log(`Lancement du diaporama à l'adresse: http://localhost:${PORT}`);
 });
