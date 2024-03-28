@@ -1,6 +1,6 @@
 :root {
-  --light-blue: #027d8f;
-  --dark-blue: #314A7E;
+  --light-blue: #314A7E;
+  --dark-blue: #027d8f;
 }
 
 #root {
@@ -25,10 +25,10 @@
   padding: 25px;
 }
 
-#media-side img, #media-side video {
-  width: 100%;
-  height: auto;
-}
+/* #media-side img, #media-side video {
+  height: 100%;
+  width: auto;
+} */
 
 #informations-side {
   background-color: var(--dark-blue);

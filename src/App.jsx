@@ -25,13 +25,20 @@ function App() {
   useEffect(() => {
     const fetchMediaFiles = async () => {
       try {
-        const response = await fetch('http://localhost:5000/media');
+        const response = await fetch('http://localhost:3000/list-media');
+        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to fetch media files');
         }
-        const files = await response.json();
+        const data = await response.json();
 
-        setMediaFiles(files.map((file) => file.name));
+        const fileNames = data.mediaPaths.map(path => {
+          const parts = path.split('/');
+          return parts[parts.length - 1];
+        });
+
+        // Setting file names in state
+        setMediaFiles(fileNames);
       } catch (error) {
         console.error(error);
       }
@@ -119,7 +126,8 @@ function App() {
     const image = new Image();
     image.src = `media/${mediaFile}`;
     image.onload = () => {
-      const aspectRatio = image.width / image.height;
+      const aspectRatio = image.width / image.;
+      console.log(aspectRatio);
       if (aspectRatio < 1) {
         containerStyle.height = '100%';
         containerStyle.width = 'auto';
