@@ -1,6 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
+import fetchWeather from '../services/fetchWeather';
+import '../styles/WeatherWidget.css';
 
-function WeatherWidget({ weatherData }) {
+function WeatherWidget() {
+  const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      const data = await fetchWeather();
+      setWeatherData(data);
+    };
+    fetchWeatherData();
+  }, []);
+
   return (
     <div id="weather-widget">
       <div id="temperature">

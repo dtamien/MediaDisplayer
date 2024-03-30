@@ -1,14 +1,14 @@
-const fetchMedia = async (url) => {
+export const fetchMedia = async () => {
+  const url = 'http://localhost:3000/media';
+
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error('Failed to fetch media files');
+    throw new Error('Failed to fetch media list');
   }
 
   const data = await response.json();
   return data.mediaPaths.map(path => {
     const parts = path.split('/');
-    return parts[parts.length - 1];
+    return parts.pop();
   });
 };
-
-export default fetchMedia;

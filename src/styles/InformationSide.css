@@ -1,0 +1,14 @@
+#information-side {
+    background: #314A7E;
+    /* background: #027d8f; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 100%;
+    width: 250px;
+    box-sizing: border-box;
+    padding: 25px;
+}
