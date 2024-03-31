@@ -43,7 +43,7 @@ function MediaSide() {
     } else {
       setIsVideoPlaying(false);
     }
-  }, [currentMedia]);
+  }, [currentMediaIndex]);
 
   useEffect(() => {
     if (mediaRef.current) {
