@@ -7,8 +7,8 @@ import cors from 'cors';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
-const mediaDir = join(__dirname, 'public', 'media');
-const port = 3000;
+const mediaDir = "/home";
+const port = 29870;
 
 app.use(cors());
 
