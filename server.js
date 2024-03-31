@@ -7,7 +7,7 @@ import cors from 'cors';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
-const mediaDir = "/home";
+const mediaDir = join(__dirname, 'dist', 'media');
 const port = 29870;
 
 app.use(cors());
@@ -26,6 +26,9 @@ app.get('/media', (req, res) => {
 
 // Serving media files statically
 app.use('/media', express.static(mediaDir));
+
+// Serving the build folder
+app.use(express.static(join(__dirname, 'dist')));
 
 app.listen(port, () => {
   console.log(`Slideshow launched at: http://localhost:${port}`);

@@ -1,5 +1,5 @@
 export const fetchMedia = async () => {
-  const url = 'http://localhost:3000/media';
+  const url = 'http://localhost:29870/media';
 
   const response = await fetch(url);
   if (!response.ok) {
