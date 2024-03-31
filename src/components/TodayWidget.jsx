@@ -1,42 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import saints from '../assets/saints.json';
-import { maximiseFontSize, capitalizeFirstLetter } from '../utils';
+import { maximizeFontSize, formatDate, formatTime } from '../utils';
 import "../styles/TodayWidget.css";
 
 function TodayWidget() {
-  const [dateTime, setDateTime] = useState(new Date());
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
   const [saint, setSaint] = useState('');
 
   useEffect(() => {
+    maximizeFontSize('date');
+  }, [date]);
+
+  useEffect(() => {
+    maximizeFontSize('time');
+  }, [time]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
-      setDateTime(new Date());
+      const dateTime = new Date();
+
+      if (dateTime.getSeconds() === 0) {
+        setTime(dateTime);
+      }
+
+      if (dateTime.getHours() === 0 && dateTime.getMinutes() === 0) {
+        setDate(dateTime);
+      }
+
     }, 1000);
+
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const formattedDate = `${(dateTime.getMonth() + 1).toString().padStart(2, '0')}-${dateTime.getDate().toString().padStart(2, '0')}`;
-    const saintOfTheDay = saints[formattedDate] || 'Unknown Saint';
-    setSaint(saintOfTheDay);
-  }, [dateTime]);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
 
-  useEffect(() => {
-    maximiseFontSize('date');
-    maximiseFontSize('time');
-    maximiseFontSize('saint');
-  }, [dateTime, saint]);
+    const saintOfTheDay = saints[month][day] || 'Unknown Saint';
+    setSaint(saintOfTheDay);
+  }, [date]);
 
   return (
     <div id='date-time-place-widget'>
       <div id="date">
-        {capitalizeFirstLetter(dateTime.toLocaleDateString('fr-FR', { weekday: 'long', month: 'long', day: 'numeric' }))}
+        {formatDate(date)}
       </div>
       <div id="time">
-        {dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        {formatTime(time)}
       </div>
-      <div id="saint">
+      {/* <div id="saint">
         {saint}
-      </div>
+      </div> */}
     </div>
   );
 }

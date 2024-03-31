@@ -7,26 +7,9 @@
 }
 
 #date, #time, #saint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#date, #time, #saint {
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-
-#date {
-    font-size: 20px;
-}
-
-#time {
-    font-size: 80px;
-}
-
-#saint {
-    font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

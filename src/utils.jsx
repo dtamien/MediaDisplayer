@@ -1,13 +1,12 @@
-function maximiseFontSize(divId) {
+function maximizeFontSize(divId) {
   const div = document.getElementById(divId);
-  let fontSize = 2;
   const maxWidth = div.offsetWidth;
-  while (fontSize < 20 && div.scrollWidth <= maxWidth) {
-    fontSize++;
+  let fontSize = 100;
+  div.style.fontSize = `${fontSize}px`;
+
+  while (div.scrollWidth > maxWidth) {
+    fontSize -= 1;
     div.style.fontSize = `${fontSize}px`;
-  }
-  if (div.scrollWidth > maxWidth) {
-    div.style.fontSize = `${fontSize - 1}px`;
   }
 }
 
@@ -15,4 +14,12 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export { maximiseFontSize, capitalizeFirstLetter };
+function formatDate(date) {
+  return capitalizeFirstLetter(date.toLocaleDateString('fr-FR', { weekday: 'long', month: 'long', day: 'numeric' }));
+}
+
+function formatTime(date) {
+  return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+export { maximizeFontSize, formatDate, formatTime };

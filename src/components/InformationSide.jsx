@@ -7,8 +7,8 @@ import '../styles/InformationSide.css';
 function InformationSide() {
   return (
     <div id="information-side">
-      {/* <TodayWidget />
-      <WeatherWidget /> */}
+      <TodayWidget />
+      <WeatherWidget />
       <QRCodeWidget />
     </div>
   );
