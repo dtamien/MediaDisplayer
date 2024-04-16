@@ -1,105 +1,58 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { fetchMedia } from '../services/fetchMedia';
+import React, { useState, useEffect } from 'react';
+import { Image } from './Image';
+// import { Video } from './Video';
+import { fetchMediaInfos } from '../services/fetchMediaInfos';
 import '../styles/MediaSide.css';
 
 function MediaSide() {
-  const [mediaList, setMediaList] = useState([]);
-  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
-  const currentMedia = mediaList[currentMediaIndex];
-  const videoExtensions = ['.mp4', '.mov'];
-  const photoExtensions = ['.jpg', '.jpeg', '.png'];
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [dimensions, setDimensions] = useState({ width: 'auto', height: 'auto' });
-  const mediaRef = useRef(null);
+  const [mediaInfos, setMediaInfos] = useState([]);
+  const [mediaIndex, setMediaIndex] = useState(0);
+  const [media, setMedia] = useState("There is no media to display.");
 
-  const handleVideoEnded = () => {
-    setIsVideoPlaying(false);
-    setCurrentMediaIndex(prevIndex => (prevIndex + 1) % mediaList.length);
+  const handleMediaEnd = () => {
+    console.log('Media ended');
+    const nextIndex = (mediaIndex + 1) % mediaInfos.length;
+    setMediaIndex(nextIndex);
+    console.log('Next media index:', mediaIndex)
   };
 
   useEffect(() => {
-    fetchMedia()
-      .then(mediaList => {
-        setMediaList(mediaList);
+    fetchMediaInfos()
+      .then((data) => {
+        setMediaInfos(data);
       })
-      .catch(error => {
-        console.error('Error fetching media:', error);
+      .catch((error) => {
+        console.error('Error fetching media info:', error);
       });
   }, []);
 
   useEffect(() => {
-    if (!isVideoPlaying) {
-      const interval = setInterval(() => {
-        setCurrentMediaIndex(prevIndex => (prevIndex + 1) % mediaList.length);
-      }, 10000);
+    if (mediaInfos.length === 0) return;
 
-      return () => clearInterval(interval);
-    }
-  }, [currentMediaIndex, mediaList, isVideoPlaying]);
+    const currentMedia = mediaInfos[mediaIndex];
+    console.log('Current media:', currentMedia);
+    const isVideo = currentMedia.type === 'video';
 
-  useEffect(() => {
-    if (currentMedia && videoExtensions.some(ext => currentMedia.endsWith(ext))) {
-      setIsVideoPlaying(true);
+    if ((mediaInfos.length === 1) && (isVideo)) {
+      setMedia(
+        <video autoPlay muted loop src={currentMedia.path} type="video/mp4" onEnded={handleMediaEnd} />
+      );
+    } else if (isVideo) {
+      setMedia(
+        <video autoPlay muted src={currentMedia.path} type="video/mp4" onEnded={handleMediaEnd} />
+      );
     } else {
-      setIsVideoPlaying(false);
+      setMedia(<Image media={currentMedia} />);
+      const timeoutId = setTimeout(() => {
+        handleMediaEnd();
+      }, 5000);
+      return () => clearTimeout(timeoutId);
     }
-  }, [currentMediaIndex]);
+  }, [mediaIndex, mediaInfos]);
 
-  useEffect(() => {
-    if (mediaRef.current) {
-      const media = mediaRef.current;
-      if (media instanceof HTMLImageElement) {
-        const img = new Image();
-        img.src = media.src;
-        img.onload = () => {
-          const { width, height } = img;
-          if (width > height) {
-            setDimensions({ width: '100%', height: 'auto' });
-          } else {
-            setDimensions({ width: 'auto', height: '100%' });
-          }
-        };
-      } else if (media instanceof HTMLVideoElement) {
-        media.onloadedmetadata = () => {
-          const { videoWidth, videoHeight } = media;
-          if (videoWidth > videoHeight) {
-            setDimensions({ width: '100%', height: 'auto' });
-          } else {
-            setDimensions({ width: 'auto', height: '100%' });
-          }
-        };
-      }
-    }
-  }, [mediaRef.current]);
 
-  return (
-    <div id="media-side">
-      {currentMedia && (
-        isVideoPlaying ? (
-          <video
-            autoPlay
-            muted
-            onEnded={handleVideoEnded}
-            ref={mediaRef}
-            style={dimensions}
-          >
-            <source src={`/media/${currentMedia}`} type="video/mp4" />
-            <source src={`/media/${currentMedia}`} type="video/mov" />
-            Your browser does not support the video tag.
-          </video>
-        ) : (photoExtensions.some(ext => currentMedia.endsWith(ext)) ? (
-          <img
-            src={`/media/${currentMedia}`}
-            alt={`Media ${currentMediaIndex}`}
-            ref={mediaRef}
-            style={dimensions}
-          />
-        ) : (
-          <p>Unsupported media type</p>
-        ))
-      )}
-    </div>
-  );
+
+  return <div id="media-side">{media}</div>;
 }
 
 export default MediaSide;

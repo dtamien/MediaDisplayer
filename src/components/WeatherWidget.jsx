@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from 'react';
 import fetchWeather from '../services/fetchWeather';
+import sunny from '../assets/weatherIcons/cloudy.png';
 import '../styles/WeatherWidget.css';
 
 function WeatherWidget() {
@@ -21,7 +22,7 @@ function WeatherWidget() {
       <div id="icon">
         {weatherData && (
           <img
-            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+            src={sunny}
             alt={weatherData.weather[0].description}
           />
         )}

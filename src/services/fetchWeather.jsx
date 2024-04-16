@@ -1,3 +1,5 @@
+// TODO: define a nice set of icons
+
 export const fetchWeather = async () => {
   const api_key = '9924bb4f893843279f4fba40684331ed';
   const latitude = '48.5833';
