@@ -1,22 +1,22 @@
 [
-    // {
-    //     "type": "image",
-    //     "path": "/media/freestocks-U25-Dy6JSlk-unsplash (1).jpg",
-    //     "style": "width: auto; height: 100%;"
-    // },
-    // {
-    //     "type": "image",
-    //     "path": "/media/easter-2197043_1920 (1).jpg",
-    //     "style": "width: 100%; height: auto;"
-    // },
-    // {
-    //     "type": "image",
-    //     "path": "/media/jason-jarrach-AMSCC4auXSA-unsplash (1).jpg",
-    //     "style": "width: 100%; height: auto;"
-    // },
-    // {
-    //     "type": "image",
-    //     "path": "/media/annie-spratt-43o1KVbOWXA-unsplash (1).jpg",
-    //     "style": "width: 100%; height: auto;"
-    // }
+    {
+        "type": "image",
+        "path": "/media/easter-2197043_1920 (1).jpg",
+        "style": "width: 100%; height: auto;"
+    },
+    {
+        "type": "image",
+        "path": "/media/freestocks-U25-Dy6JSlk-unsplash (1).jpg",
+        "style": "width: auto; height: 100%;"
+    },
+    {
+        "type": "image",
+        "path": "/media/jason-jarrach-AMSCC4auXSA-unsplash (1).jpg",
+        "style": "width: 100%; height: auto;"
+    },
+    {
+        "type": "image",
+        "path": "/media/annie-spratt-43o1KVbOWXA-unsplash (1).jpg",
+        "style": "width: 100%; height: auto;"
+    }
 ]

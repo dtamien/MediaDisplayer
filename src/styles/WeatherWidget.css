@@ -10,6 +10,12 @@
   justify-content: center;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
+#icon img {
+  width: 75px;
+  height: 75px;
+  stroke: transparent;
+  stroke-width: 0px;
+}
