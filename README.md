@@ -10,4 +10,4 @@ Photos and videos are displayed in a loop. A photo stays on the screen for 10 se
 
 # Information side
 
-The current date and time, the current weather, and a QR code are displayed on the screen. The QR code links to the shop's social media Facebook page.
+The current date and time, information on the weather at the store's location and a QR code are displayed. The QR code links to the store's Facebook page.
