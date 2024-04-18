@@ -17,15 +17,13 @@ The current date and time, information on the weather at the store's location an
 ## Install dependencies
 
 ```bash
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt && yarn
 ```
-
-```bash
-yarn
-````
 
 ## Run the python process
 
 ```bash
-python3 process_media_directory.py --src-dir /Users/damientanneau/Desktop/À\ la\ diffusion  --dest-dir /Users/damientanneau/Documents/GITHUB/media-displayer/dist
+python3 process_media_directory.py \
+    --src-dir /Users/damientanneau/Desktop/À\ la\ diffusion \
+    --dest-dir /Users/damientanneau/Documents/GITHUB/media-displayer/dist
 ```
