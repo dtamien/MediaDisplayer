@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "type": "image",
+        "path": "/media/verticale.jpg",
+        "style": "width: auto; height: 100%;"
+    },
+    {
+        "type": "image",
+        "path": "/media/horizontale.jpg",
+        "style": "width: 100%; height: auto;"
+    },
+    {
+        "type": "video",
+        "path": "/media/horizontal_video_test.mov",
+        "style": "width: 100%; height: auto;"
+    },
+    {
+        "type": "video",
+        "path": "/media/vertical_video_test.mp4",
+        "style": "width: auto; height: 100%;"
+    }
+]
