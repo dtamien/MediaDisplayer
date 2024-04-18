@@ -12,18 +12,15 @@ Photos and videos are displayed in a loop. A photo stays on the screen for 10 se
 
 The current date and time, information on the weather at the store's location and a QR code are displayed. The QR code links to the store's Facebook page.
 
-# Commands
-
-## Install dependencies
+# Command to run the system
 
 ```bash
-pip3 install -r requirements.txt && yarn
-```
-
-## Run the python process
-
-```bash
+pip3 install -r requirements.txt && \
+yarn && \
 python3 process_media_directory.py \
-    --src-dir /Users/damientanneau/Desktop/À\ la\ diffusion \
-    --dest-dir /Users/damientanneau/Documents/GITHUB/media-displayer/dist
+    --src-dir /Users/dtamien/Desktop/À\ la\ diffusion \
+    --dest-dir /Users/dtamien/Documents/GITHUB/media-displayer/dist && \
+cd /Users/dtamien/Documents/GITHUB/media-displayer/dist && \
+serve -p 29870 
+
 ```
