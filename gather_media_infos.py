@@ -4,7 +4,6 @@ import json
 from PIL import Image
 from moviepy.editor import VideoFileClip
 from multiprocessing import Pool
-import shutil
 from tqdm import tqdm
 
 def process_media(file_path, dest_dir):
@@ -24,9 +23,7 @@ def process_media(file_path, dest_dir):
             style = 'width: auto; height: 100%;'
         else:
             style = 'width: 100%; height: auto;'
-        
-        shutil.copyfile(file_path, os.path.join(dest_dir, "media", os.path.basename(file_path)))
-        
+                
         return {
             'type': media_type,
             'path': os.path.join("/media", os.path.basename(file_path)),
@@ -43,6 +40,12 @@ def process_wrapper(args):
 
 
 def main(src_dir, dest_dir):
+
+    media_symlink_path = os.path.join(dest_dir, "media")
+    if os.path.islink(media_symlink_path):
+        os.remove(media_symlink_path)
+    os.symlink(src_dir, media_symlink_path)
+
     media_info = []
     file_paths = [entry.path for entry in os.scandir(src_dir) if entry.is_file() and not entry.name.startswith('.')]
 
@@ -54,8 +57,6 @@ def main(src_dir, dest_dir):
 
     with open(os.path.join(dest_dir, "media.json"), 'w') as f:
         json.dump(media_info, f, indent=4)
-
-    print(f"Media from '{src_dir}' copied to '{dest_dir}media' and their metadata saved to '{dest_dir}media.json'")
 
 
 if __name__ == '__main__':
