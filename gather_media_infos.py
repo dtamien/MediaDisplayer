@@ -40,7 +40,6 @@ def process_wrapper(args):
 
 
 def main(src_dir, dest_dir):
-
     media_symlink_path = os.path.join(dest_dir, "media")
     if os.path.islink(media_symlink_path):
         os.remove(media_symlink_path)
