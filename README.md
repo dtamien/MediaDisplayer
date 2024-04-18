@@ -21,6 +21,7 @@ python3 process_media_directory.py \
     --src-dir /Users/dtamien/Desktop/À\ la\ diffusion \
     --dest-dir /Users/dtamien/Documents/GITHUB/media-displayer/dist && \
 cd /Users/dtamien/Documents/GITHUB/media-displayer/dist && \
-serve -p 29870 
+serve -p 29870 && \
+firefox http://localhost:29870
 
 ```
