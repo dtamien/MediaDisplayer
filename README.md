@@ -23,5 +23,4 @@ python3 process_media_directory.py \
 cd /Users/dtamien/Documents/GITHUB/media-displayer/dist && \
 serve -p 29870 && \
 firefox http://localhost:29870
-
 ```
