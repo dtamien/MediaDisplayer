@@ -6,7 +6,7 @@ from moviepy.editor import VideoFileClip
 from multiprocessing import Pool
 from tqdm import tqdm
 
-def process_media(file_path, dest_dir):
+def process_media(file_path):
     try:
         if file_path.lower().endswith(('.png', '.jpg', '.jpeg')):
             img = Image.open(file_path)
