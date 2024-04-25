@@ -58,7 +58,7 @@ function WeatherWidget() {
           <div id="temperature">{`${Math.round(weatherData.main.temp)}°C`}</div>
           <div id="icon">
             <img
-              src={sunny}
+              src={icon}
               alt={weatherData.weather[0].description}
             />
           </div>
