@@ -2,12 +2,18 @@ FROM node:20-alpine3.20
 
 WORKDIR /app
 
-COPY package*.json /app
+COPY package.json yarn.lock ./
 
-RUN npm ci --only=production && npm cache clean --force
+RUN yarn install
 
-COPY . /app
+COPY src ./src
 
-CMD node src/index.jsx
+COPY public ./public
+
+COPY index.html .
+
+RUN yarn build
 
 EXPOSE 3000
+
+CMD sleep infinity
