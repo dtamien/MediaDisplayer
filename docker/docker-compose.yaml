@@ -1,0 +1,13 @@
+name: utilse_landeda
+
+services:
+  diaporama:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: src/main.jsx
+    image: ghcr.io/dtamien/mediadisplayer:v1.0.0
+    ports:
+      - "29870:29870"
+    volumes:
+      - ./data:/data
